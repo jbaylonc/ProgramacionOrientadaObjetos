@@ -1,0 +1,30 @@
+//ejercicio 2
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner myScan = new Scanner(System.in);
+        int calificacion;
+
+        do {
+        System.out.print("Introduce la calificación numérica (0-100): ");
+         calificacion= myScan.nextInt();
+        }
+        while ( calificacion <0 || calificacion>100 );
+        
+        if (calificacion >= 90) {
+            System.out.println("Calificación: A (Excelente)");
+        } else if (calificacion >= 80) {
+            System.out.println("Calificación: B (Muy Bien)");
+        } else if (calificacion >= 70) {
+            System.out.println("Calificación: C (Aprobado)");
+        } else if (calificacion >= 60) {
+            System.out.println("Calificación: D (Suficiente)");
+        } else {
+            System.out.println("Calificación: F (Reprobado)");
+        }
+
+        myScan.close();
+    }
+}
+

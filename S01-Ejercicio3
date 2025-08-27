@@ -1,0 +1,32 @@
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner myScan = new Scanner(System.in);
+        int limiteinferior, limitesuperior;
+        int sumapares = 0;
+
+        do {
+        System.out.print("Introduce el limite inferior");
+         limiteinferior= myScan.nextInt();
+        }
+        while ( limiteinferior <0 );
+        
+        do {
+        System.out.print("Introduce el limite superior");
+         limitesuperior= myScan.nextInt();
+        }
+        while ( limitesuperior <0 );
+        
+        for (int i = limiteinferior; i <= limitesuperior; i++) 
+        {
+            if (i%2 == 0)
+                sumapares = sumapares + i;
+        }
+        System.out.println(sumapares);
+        myScan.close();
+    
+}
+}
+

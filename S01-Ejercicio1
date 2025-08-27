@@ -1,0 +1,48 @@
+import java.util.Scanner;   // Importo la clase Scanner
+public class Main           // Mi método principal
+{
+	public static void main(String[] args) {
+	    Scanner br = new Scanner(System.in);  // Creo un objeto Scanner
+	    int numero1, numero2;       //declaro 2 variables enteras
+	    float numero3, numero4;     //declaro 2 variables flotantes
+	    // Solicito al usuario que ingrese los números
+        System.out.println("Ingrese el número entero 1 ");  
+        numero1 = br.nextInt();
+        System.out.println("Ingrese el número entero 2 ");  
+        numero2 = br.nextInt();
+        System.out.println("Ingrese el número decimal 1 "); 
+        numero3 = br.nextFloat();
+        System.out.println("Ingrese el número decimal 2 "); 
+        numero4 = br.nextFloat();
+        
+        //operaciones solicitadas: 1. Suma y producto de los dos enteros. 2.Resta del segundo entero al primero, 
+        //3. residuo de la división entera del primer entero entre el segundo. 4. Suma y producto de los dos números de punto flotante.
+        //5. División del primer número de punto flotante entre el segundo.
+        int sumaEnteros = numero1 + numero2;
+        int productoEnteros = numero1 * numero2;
+        int restaEnteros = numero1 - numero2;
+        int residuoEnteros = numero1 % numero2;
+
+        float sumaFlotantes = numero3 + numero4;
+        float productoFlotantes = numero3 * numero4;
+        float divisionFlotantes = numero3 / numero4;
+        
+         // Presentación en tabla
+        System.out.println("\n+------------------------------------------+");
+        System.out.printf("| %-30s | %-12s |\n", "OPERACIÓN", "RESULTADO");
+        System.out.println("+------------------------------------------+");
+        System.out.printf("| %-30s | %12d |\n", "Número entero 1", numero1);
+        System.out.printf("| %-30s | %12d |\n", "Número entero 2", numero2);
+        System.out.printf("| %-30s | %12d |\n", "Suma enteros", sumaEnteros);
+        System.out.printf("| %-30s | %12d |\n", "Producto enteros", productoEnteros);
+        System.out.printf("| %-30s | %12d |\n", "Resta enteros (n1 - n2)", restaEnteros);
+        System.out.printf("| %-30s | %12d |\n", "Residuo enteros (n1 % n2)", residuoEnteros);
+        System.out.printf("| %-30s | %12.2f |\n", "Número decimal 1", numero3);
+        System.out.printf("| %-30s | %12.2f |\n", "Número decimal 2", numero4);
+        System.out.printf("| %-30s | %12.2f |\n", "Suma flotantes", sumaFlotantes);
+        System.out.printf("| %-30s | %12.2f |\n", "Producto flotantes", productoFlotantes);
+        System.out.printf("| %-30s | %12.2f |\n", "División flotantes (n3 / n4)", divisionFlotantes);
+        System.out.println("+------------------------------------------+");
+
+	}
+}

@@ -1,0 +1,59 @@
+package ejercicio2;
+
+public class Estudiante {
+    private String nombre;   
+    private String apellido;
+    private String carreraprofesional;
+    private int edad;
+    private String identificador;
+    private static int contadorestudiante = 0;
+
+    // Constructor por defecto
+    public Estudiante() {   
+        this.nombre = null;
+        this.apellido = null;
+        this.carreraprofesional = null;
+        this.edad = 0;
+        this.identificador = null;
+        contadorestudiante++;
+    }
+    // Métodos de instancia
+    public String obtenerNombres(){  
+        return "Apellido " + this.apellido + " Nombres: " + this.nombre;
+    }    
+    public String obtenerCarrera(){  
+        return this.carreraprofesional;
+    }    
+    public int obtenerEdad(){  
+        return this.edad;
+    }    
+    public String obtenerIdentificador(){  
+        return this.identificador;
+    }    
+    // Constructor con parámetros
+    public Estudiante(String nombre, String apellido, String carreraprofesional, int edad, String id) {   
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.carreraprofesional = carreraprofesional;
+        this.edad = edad;
+        this.identificador = id;
+        contadorestudiante++;
+    }
+    // Método para obtener información general
+    public String obtenerInformacion() {
+        return "\nNombre y Apellido: " + this.nombre + " " + this.apellido + 
+               "\nCarrera profesional: " + this.carreraprofesional;
+    }
+    // Método estático para obtener el contador de estudiantes
+    public static int obtenerContadorAlumnos() {
+        return contadorestudiante;
+    }   
+    // Nuevo método: Estudiar
+    public String estudiar(String materia) {
+        return this.nombre + " está estudiando la materia de " + materia + ".";
+    }
+    // Nuevo método: Presentar examen
+    public String presentarExamen(String materia) {
+        return this.nombre + " está presentando el examen de " + materia + ".";
+    }
+}

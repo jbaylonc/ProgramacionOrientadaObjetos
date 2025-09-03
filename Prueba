@@ -1,0 +1,55 @@
+package ejercicio2;
+import java.util.Scanner;
+import ejercicio2.Estudiante;
+public class Prueba {
+    public static void main(String[] args) {
+        // Prueba rápida de creación de objeto
+        System.out.println("******  Prueba rápida de creación de objeto ******");
+        Estudiante estudiante1 = new Estudiante("Jorge", "Baylon", "Ingenieria", 20, "ID123");
+        System.out.println(estudiante1.obtenerInformacion());
+        // 1° Se declaran variables de referencia
+        Estudiante e1, e2, e3;
+        // 2° Se crean objetos
+        e1 = new Estudiante();
+        e2 = new Estudiante("Maria", "Lopez", "Medicina", 22, "ID456");
+        e3 = new Estudiante("Carlos", "Gomez", "Derecho", 25, "ID789");
+        // 3° Se destruyen (automático en Java)
+        // Invocación a métodos mediante el objeto
+        System.out.println("******  Invocación a métodos mediante el objeto ******");
+        System.out.println("Nombre completo de e1: " + e1.obtenerNombres());
+        System.out.println("Nombre completo de e2: " + e2.obtenerNombres());
+        System.out.println("Datos de e1: " + e1.obtenerInformacion());
+        System.out.println("Datos de e2: " + e2.obtenerInformacion());
+        System.out.println("Datos de e3: " + e3.obtenerInformacion());
+        System.out.println("Cantidad de estudiantes: " + Estudiante.obtenerContadorAlumnos());
+        Scanner scanner = new Scanner(System.in);
+        // Capturar datos del usuario
+        System.out.println("******  Capturar datos del usuario ******");
+        System.out.println("Ingrese el nombre del estudiante:");
+        String nombre = scanner.nextLine();
+        System.out.println("Ingrese el apellido del estudiante:");
+        String apellido = scanner.nextLine();
+        System.out.println("Ingrese la carrera profesional:");
+        String carrera = scanner.nextLine();
+        System.out.println("Ingrese la edad:");
+        int edad = Integer.parseInt(scanner.nextLine());
+        System.out.println("Ingrese el identificador:");
+        String id = scanner.nextLine();
+
+        // Crear objeto con los datos ingresados por el usuario
+        Estudiante estudianteUsuario = new Estudiante(nombre, apellido, carrera, edad, id);
+        System.out.println("Datos del Estudiante ingresado: " + estudianteUsuario.obtenerInformacion());
+        
+         // Pedir materia para estudiar y presentar examen
+        System.out.println("Ingrese la materia que desea estudiar:");
+        String materiaEstudiar = scanner.nextLine();
+        System.out.println(estudianteUsuario.estudiar(materiaEstudiar));
+        
+        System.out.println("Ingrese la materia para presentar examen:");
+        String materiaExamen = scanner.nextLine();
+        System.out.println(estudianteUsuario.presentarExamen(materiaExamen));
+        
+        System.out.println("Cantidad de estudiantes: " + Estudiante.obtenerContadorAlumnos());
+        scanner.close();   
+    }   
+}

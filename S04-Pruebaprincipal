@@ -1,0 +1,43 @@
+package herencia;
+import java.io.*;
+
+public class PruebaMascotaDigital {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String nombrem;
+        int nivenergy, nivhappiness;
+
+        System.out.println("Ingrese el nombre de la mascota digital Padre:");
+        nombrem = br.readLine().toUpperCase();
+        System.out.println("Ingrese el nivel de energia:");
+        nivenergy = Integer.parseInt(br.readLine());
+        System.out.println("Ingrese el nivel de felicidad:");
+        nivhappiness = Integer.parseInt(br.readLine());
+        Mascotadigital md1 = new Mascotadigital(nombrem, nivenergy, nivhappiness);
+        // Mostrar Mascotadigital
+        System.out.println("\n*** DATOS MASCOTA DIGITAL***");
+        System.out.println(md1.toString());
+               
+        Pow powMascota = new Pow("Pitufo", 40, 30, 50, "Rojo");
+        Xy xyMascota = new Xy("BobyBot", 50, 50, 70, false);
+        // Mostrar Pow
+        System.out.println("\n*** DATOS POW ***");
+        System.out.println(powMascota.toString());
+        System.out.println(powMascota.MakeSound());
+
+        powMascota.comer();
+        powMascota.jugar();
+        System.out.println("Estado final Pow: " + powMascota.toString());
+
+        // Mostrar Xy
+        System.out.println("\n*** DATOS XY ***");
+        System.out.println(xyMascota.toString());
+        System.out.println(xyMascota.MakeSound());
+
+        xyMascota.dormir();
+        xyMascota.entrenar();
+        System.out.println("Nivel de energía: " + xyMascota.getNivelEnergia());
+        
+        System.out.println("Estado final Xy: " + xyMascota.toString());
+    }
+}

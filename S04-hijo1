@@ -1,0 +1,64 @@
+
+package herencia;
+
+public class Xy extends Mascotadigital {
+
+ // Atributos propios
+    private int nivelInteligencia;
+    private boolean modoMusical;
+
+    // Constructor
+    public Xy(String nombrepila, int nivelfelicidad, int nivelenergia, int nivelInteligencia, boolean modoMusical) {
+        super(nombrepila, nivelfelicidad, nivelenergia);
+        this.nivelInteligencia = nivelInteligencia;
+        this.modoMusical = modoMusical;
+    }
+
+    // Getters y setters
+    public int getNivelInteligencia() {
+        return nivelInteligencia;
+    }
+    public void setNivelInteligencia(int nivelInteligencia) {
+        this.nivelInteligencia = nivelInteligencia;
+    }
+
+    public boolean isModoMusical() {
+        return modoMusical;
+    }
+    public void setModoMusical(boolean modoMusical) {
+        this.modoMusical = modoMusical;
+    }
+
+    @Override
+    public String MakeSound() {
+        return super.MakeSound() + " ¡Piu Piu Piu!";
+    }
+
+    public void dormir() {
+        this.nivelenergia += 20;
+        System.out.println(nombrepila + " durmió profundamente. Aumentó su energía +20.");
+    }
+
+    public void entrenar() {
+        this.nivelfelicidad += 10;
+        this.nivelenergia -= 10;
+        this.nivelInteligencia += 5;
+        System.out.println(nombrepila + " entrenó bien. Felicidad +10, Energía -10, Inteligencia +5.");
+    }
+
+    // Reporte
+    @Override
+    public String toString() {
+        String estado;
+        if (modoMusical) {
+            estado = "Activado";
+        } else {
+            estado = "Desactivado";
+        }
+    //(modoMusical ? "Activado" : "Desactivado")
+    return super.toString() +
+           ", Inteligencia=" + nivelInteligencia +
+           ", Modo Musical=" + estado;
+        
+    }    
+}

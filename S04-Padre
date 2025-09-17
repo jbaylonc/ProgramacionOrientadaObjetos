@@ -1,0 +1,60 @@
+package herencia;
+
+public class Mascotadigital { //Clase Padre
+    //Atributos
+    protected String nombrepila; //Modificar protegido - para herencia
+    protected int nivelfelicidad;
+    protected int nivelenergia;
+	
+    //Constructor
+    public Mascotadigital() {
+    	this.nombrepila=null;
+    	this.nivelfelicidad=0;
+        this.nivelenergia=0;
+    }    
+    public Mascotadigital(String nombrepila, int nivelfelicidad, int nivelenergia) {
+    	this.setNombrePila(nombrepila);
+    	this.nivelfelicidad=nivelfelicidad;
+        this.nivelenergia=nivelenergia;
+    }
+    
+    //Metodos set y get
+    public void setNombrePila(String nombrepila){
+    	if (nombrepila.isEmpty())
+            {System.out.println("El nombre de la mascota no puede estar vacío");}
+        else
+            {this.nombrepila=nombrepila;}
+    }
+    public String getNombrePila(){
+    	return nombrepila;
+    }    
+    public void setNivelFelicidad(int nivelfelicidad){
+    	if (nivelfelicidad>=0 && nivelfelicidad<=100)
+        {this.nivelfelicidad=nivelfelicidad;}
+        else
+        {System.out.println("El nivel de felicidad es erróneo");}
+    }    
+    public int getNivelFelicidad(){
+    	return nivelfelicidad;
+    }    
+
+    public void setNivelEnergia(int nivelenergia){
+    	if (nivelenergia>=0 && nivelenergia<=100)
+        {this.nivelenergia=nivelenergia;}
+        else
+        {System.out.println("El nivel de energia es erróneo");}
+    }    
+    public int getNivelEnergia(){
+    	return nivelenergia;
+    }   
+    @Override //Sobreescritura de métodos
+    public String toString() {
+        return "Mascota Digital{" + "Nombre de Pila=" + nombrepila + 
+                ", " + " Nivel de Felicidad=" + nivelfelicidad + 
+                " Nivel de Energía=" + nivelenergia + "}";
+    }  
+    
+    public String MakeSound() {
+        return "Tik, Tik, Tok";
+    }  
+}

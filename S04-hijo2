@@ -1,0 +1,54 @@
+package herencia;
+
+public class Pow extends Mascotadigital {
+    // Atributos propios
+    private int nivelAtaque;
+    private String color;
+    
+// Constructor
+    public Pow(String nombrepila, int nivelfelicidad, int nivelenergia, int nivelAtaque, String color) {
+        super(nombrepila, nivelfelicidad, nivelenergia);
+        this.nivelAtaque = nivelAtaque;
+        this.color = color;
+    }
+// Getters y setters
+    public int getNivelAtaque() {
+        return nivelAtaque;
+    }
+    public void setNivelAtaque(int nivelAtaque) {
+        this.nivelAtaque = nivelAtaque;
+    }
+
+    public String getColor() {
+        return color;
+    }
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    // Sobreescribir el sonido
+    @Override
+    public String MakeSound() {
+        return "Pow dice: ¡Poooow Poooow!";
+    }
+
+    // Acciones
+    public void comer() {
+        this.nivelenergia += 10;
+        System.out.println(nombrepila + " ha comido rico. Energía +10.");
+    }
+
+    public void jugar() {
+        this.nivelfelicidad += 15;
+        this.nivelenergia -= 5;
+        System.out.println(nombrepila + " jugó bien. Felicidad +15, Energía -5.");
+    }
+
+    // Reporte
+    @Override
+    public String toString() {
+        return super.toString() +
+               ", Ataque=" + nivelAtaque +
+               ", Color=" + color;
+    }
+}

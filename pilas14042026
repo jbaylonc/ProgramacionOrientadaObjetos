@@ -1,0 +1,41 @@
+import java.io.*; // Importa clases para entrada de datos (BufferedReader, InputStreamReader)
+import java.util.Stack; // Importa la clase Stack para trabajar con pilas
+
+public class Main
+{
+    public static void main(String[] args) throws IOException {
+        // Se crea un objeto BufferedReader para leer datos desde teclado
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        // Declaramos la pila llamada "historial" que almacenará datos tipo String
+        Stack<String> historial = new Stack<>();
+        // Número de elementos que se desea ingresar a la pila
+        int n = 5; 
+        
+        /* Ingreso de datos desde teclado
+        // Este ciclo permite ingresar "n" direcciones web
+        for(int i = 0; i < n; i++){
+            System.out.print("Ingrese la dirección web: ");
+            String valor = br.readLine(); // Lee el texto ingresado
+            historial.push(valor); // Agrega el valor al tope de la pila
+        }*/
+        
+        /* Ingreso manual de las direcciones */
+        // push() agrega elementos al TOPE de la pila
+        historial.push("www.youtube.com");
+        historial.push("onpe.gob.pe");
+        historial.push("upao.edu.pe");
+        historial.push("concorde.com");
+        historial.push("amazons.com");
+        
+        // Muestra todos los elementos de la pila
+        System.out.println("\nContenido de la pila: " + historial);
+        // peek() muestra el elemento en el TOPE sin eliminarlo
+        System.out.println("Elemento en el tope: " + historial.peek());
+        // pop() elimina y devuelve el elemento del TOPE de la pila
+        System.out.println("Elemento eliminado: " + historial.pop());
+        System.out.println("Elemento eliminado: " + historial.pop());
+        
+        // Muestra la pila después de eliminar 2 elementos
+        System.out.println("Pila final: " + historial);
+    }
+}

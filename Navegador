@@ -1,0 +1,75 @@
+import java.io.*;
+import java.util.Stack;
+
+public class Ejemplo1 {
+    public static void main(String[] args) throws IOException {
+        
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        
+        // Pila principal (historial)
+        Stack<String> historial = new Stack<>();
+        // Pila para avanzar
+        Stack<String> adelante = new Stack<>();
+        
+        int opcion;
+        do {
+            System.out.println("\n===== MI NAVEGADOR WEB 1.0 =====");
+            System.out.println("1. Ingresar nueva web");
+            System.out.println("2. Retroceder <--");
+            System.out.println("3. Avanzar    -->");
+            System.out.println("4. Ver página actual");
+            System.out.println("5. Ver historial");
+            System.out.println("6. Salir");
+            System.out.print("Seleccione opción: ");
+            
+            opcion = Integer.parseInt(br.readLine());
+            
+            switch(opcion){
+                case 1:
+                    // Ingresar nueva web
+                    System.out.print("Ingrese dirección web: ");
+                    String web = br.readLine();
+                    historial.push(web); // agregar al historial
+                    adelante.clear();   // borrar pila de avance
+                    System.out.println("Página agregada.");
+                    break;
+                case 2:
+                    // Retroceder
+                    if(historial.size() > 1){
+                        adelante.push(historial.pop());
+                        System.out.println("Página actual: " + historial.peek());
+                    } else {
+                        System.out.println("No hay más páginas anteriores.");
+                    }
+                    break;
+                case 3:
+                    // Avanzar
+                    if(!adelante.isEmpty()){
+                        historial.push(adelante.pop());
+                        System.out.println("Página actual: " + historial.peek());
+                    } else {
+                        System.out.println("No hay más páginas siguientes.");
+                    }
+                    break;
+                case 4:
+                    // Mostrar actual
+                    if(!historial.isEmpty()){
+                        System.out.println("Página actual: " + historial.peek());
+                    } else {
+                        System.out.println("Historial vacío.");
+                    }
+                    break;
+                case 5:
+                    System.out.println("Histrial..."+historial);
+                    System.out.println("Adelante..."+adelante);
+                    break;    
+                case 6:
+                    System.out.println("Saliendo...");
+                    break;
+                default:
+                    System.out.println("Opción inválida");
+            }
+            
+        } while(opcion != 6);
+    }
+}

@@ -1,0 +1,139 @@
+public interface StackADT<T> {
+    public void push(T element);
+    public T pop();
+    public T peek();
+    public boolean isEmpty();
+    public int size();
+    public String toString();
+}
+
+public class LinearNode<T> {
+    private T element;
+    private LinearNode<T> next;
+
+    // Constructor vacío
+    public LinearNode() {
+        next = null;
+        element = null;
+    }
+
+    // Constructor con dato
+    public LinearNode(T elem) {
+        next = null;
+        element = elem;
+    }
+
+    // Getters y Setters
+    public LinearNode<T> getNext() {
+        return next;
+    }
+
+    public void setNext(LinearNode<T> node) {
+        next = node;
+    }
+
+    public T getElement() {
+        return element;
+    }
+
+    public void setElement(T elem) {
+        element = elem;
+    }
+}
+
+
+
+public class LinkedStack<T> implements StackADT<T> {
+
+    private LinearNode<T> top;
+    private int count;
+
+    // Constructor - crea pila vacía
+    public LinkedStack() {
+        top = null;
+        count = 0;
+    }
+
+    // Agrega un elemento en el top de la pila
+    @Override
+    public void push(T element) {
+        LinearNode<T> temp = new LinearNode<T>(element);
+        temp.setNext(top);
+        top = temp;
+        count++;
+    }
+
+    // Remueve y retorna el elemento del top
+    @Override
+    public T pop() {
+        if (isEmpty()) {
+            System.out.println("Pila vacia");
+            return null;
+        }
+        T result = top.getElement();
+        top = top.getNext();
+        count--;
+        return result;
+    }
+
+    // Retorna el elemento del top sin removerlo
+    @Override
+    public T peek() {
+        if (isEmpty()) {
+            System.out.println("Pila vacia");
+            return null;
+        }
+        return top.getElement();
+    }
+
+    // Retorna true si la pila está vacía
+    @Override
+    public boolean isEmpty() {
+        return (count == 0);
+    }
+
+    // Retorna el número de elementos en la pila
+    @Override
+    public int size() {
+        return count;
+    }
+
+    // Retorna los elementos de la pila como String
+    @Override
+    public String toString() {
+        String result = "";
+        LinearNode<T> current = top;
+        while (current != null) {
+            result += current.getElement() + " ";
+            current = current.getNext();
+        }
+        return result;
+    }
+}
+
+
+
+
+public class Main {
+    public static void main(String[] args) {
+
+        LinkedStack<Integer> pila = new LinkedStack<>();
+
+        pila.push(10);
+        pila.push(20);
+        pila.push(30);
+
+        System.out.println("Elementos de la Pila: " + pila.toString());
+        System.out.println("El entero en la cima es: " + pila.peek());
+        System.out.println("Nro de elementos en la pila: " + pila.size());
+
+        System.out.println("\n-- Vaciando la pila --");
+        while (!pila.isEmpty()) {
+            System.out.println("Pop: " + pila.pop());
+        }
+
+        if (pila.isEmpty()) {
+            System.out.println("La pila esta vacia");
+        }
+    }
+}

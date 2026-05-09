@@ -1,0 +1,282 @@
+/**
+ * Implementación de una cola genérica usando arreglo circular
+ * @param <T> Tipo de elementos que almacenará la cola
+ */
+public class ColaGenerica<T> {
+    private static final int CAPACIDAD_INICIAL = 10;
+    private T[] elementos;
+    private int frente;
+    private int fin;
+    private int tamanio;
+
+    /**
+     * Constructor que crea una cola con capacidad inicial predeterminada
+     */
+    @SuppressWarnings("unchecked")
+    public ColaGenerica() {
+        elementos = (T[]) new Object[CAPACIDAD_INICIAL];
+        frente = 0;
+        fin = -1;
+        tamanio = 0;
+    }
+
+    /**
+     * Constructor que crea una cola con capacidad inicial especificada
+     * @param capacidad Capacidad inicial de la cola
+     */
+    
+@SuppressWarnings("unchecked")
+    public ColaGenerica(int capacidad) {
+        if (capacidad <= 0) {
+            throw new IllegalArgumentException("La capacidad debe ser mayor que cero");
+        }
+        elementos = (T[]) new Object[capacidad];
+        frente = 0;
+        fin = -1;
+        tamanio = 0;
+    }
+
+    /**
+     * Agrega un elemento al final de la cola
+     * @param elemento Elemento a encolar
+     * @return true si el elemento fue agregado exitosamente
+     */
+    public boolean encolar(T elemento) {
+        if (tamanio == elementos.length) {
+            expandirCapacidad();
+        }
+        
+        fin = (fin + 1) % elementos.length;
+        elementos[fin] = elemento;
+        tamanio++;
+        return true;
+    }
+
+ /**
+     * Remueve y retorna el elemento al frente de la cola
+     * @return Elemento removido
+     * @throws IllegalStateException si la cola está vacía
+     */
+    public T desencolar() {
+        if (estaVacia()) {
+            throw new IllegalStateException("La cola está vacía");
+        }
+        
+        T elemento = elementos[frente];
+        elementos[frente] = null; // Ayuda al recolector de basura
+        frente = (frente + 1) % elementos.length;
+        tamanio--;
+        return elemento;
+    }
+
+    /**
+     * Retorna el elemento al frente de la cola sin removerlo
+     * @return Elemento al frente de la cola
+     * @throws IllegalStateException si la cola está vacía
+     */
+    public T frente() {
+        if (estaVacia()) {
+            throw new IllegalStateException("La cola está vacía");
+        }
+        return elementos[frente];
+    }
+
+    public T ultimo() {
+    if (estaVacia()) {
+        throw new IllegalStateException("La cola está vacía");
+        }
+    return elementos[fin];
+    }
+    
+    /**
+     * Verifica si la cola está vacía
+     * @return true si la cola está vacía, false en caso contrario
+     */
+    public boolean estaVacia() {
+        return tamanio == 0;
+    }
+    
+    public int capacidad()
+    {   return elementos.length;
+    }
+    
+    /**
+     * Retorna el número de elementos en la cola
+     * @return Tamaño de la cola
+     */
+    public int tamaño() {
+        return tamanio;
+    }
+
+    /**
+     * Expande la capacidad de la cola cuando está llena
+     */
+    @SuppressWarnings("unchecked")
+    private void expandirCapacidad() {
+        int nuevaCapacidad = elementos.length * 2;
+        T[] nuevoArreglo = (T[]) new Object[nuevaCapacidad];
+        
+        // Copiar elementos preservando el orden
+        for (int i = 0; i < tamanio; i++) {
+            int indice = (frente + i) % elementos.length;
+            nuevoArreglo[i] = elementos[indice];
+        }
+        
+        elementos = nuevoArreglo;
+        frente = 0;
+        fin = tamanio - 1;
+    }
+
+    /**
+     * Vacía la cola, removiendo todos los elementos
+     */
+    @SuppressWarnings("unchecked")
+    public void vaciar() {
+        elementos = (T[]) new Object[CAPACIDAD_INICIAL];
+        frente = 0;
+        fin = -1;
+        tamanio = 0;
+    }
+
+    @Override
+    public String toString() {
+        if (estaVacia()) {
+            return "[]";
+        }
+        
+        StringBuilder sb = new StringBuilder("[");
+        for (int i = 0; i < tamanio; i++) {
+            int indice = (frente + i) % elementos.length;
+            sb.append(elementos[indice]);
+            if (i < tamanio - 1) {
+                sb.append(", ");
+            }
+        }
+        sb.append("]");
+        return sb.toString();
+    }
+}
+
+
+
+///// ********************************************
+import java.util.Scanner;
+
+/**
+ * Clase principal para probar ColaGenerica
+ */
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Inicialización de una cola genérica para almacenar cadenas de texto (Strings)
+        ColaGenerica<String> cola = new ColaGenerica<>();
+
+        // Inicialización de una cola genérica para números enteros (Integer)
+         //ColaGenerica<Integer> cola = new ColaGenerica<>();
+
+        // Inicialización de una cola genérica para objetos de tipo Cliente, etc...
+        // ColaGenerica<Cliente> cola = new ColaGenerica<>();
+        
+        int opcion;
+
+        do {
+            System.out.println("\n========= MENÚ COLA GENÉRICA =========");
+            System.out.println("1. Encolar elemento");
+            System.out.println("2. Desencolar elemento");
+            System.out.println("3. Mostrar cola");
+            System.out.println("4. Mostrar frente");
+            System.out.println("5. Mostrar final");
+            System.out.println("6. Verificar si está vacía");
+            System.out.println("7. Mostrar capacidad");
+            System.out.println("8. Mostrar tamaño");
+            System.out.println("9. Vaciar cola");
+            System.out.println("0. Salir");
+            System.out.print("Seleccione una opción: ");
+
+            opcion = sc.nextInt();
+            sc.nextLine(); 
+
+            switch (opcion) {
+
+                case 1:
+                    System.out.print("Ingrese elemento a encolar: ");
+                    String elemento = sc.nextLine();
+
+                    cola.encolar(elemento);
+
+                    System.out.println("Elemento encolado correctamente.");
+                    break;
+
+                case 2:
+                    try {
+                        String eliminado = cola.desencolar();
+                        System.out.println("Elemento desencolado: " + eliminado);
+                    } catch (IllegalStateException e) {
+                        System.out.println(e.getMessage());
+                    }
+                    break;
+
+                case 3:
+                    System.out.println("Contenido de la cola:");
+                    System.out.println(cola);
+                    break;
+
+                case 4:
+                    try {
+                        System.out.println("Elemento al frente: " + cola.frente());
+                    } catch (IllegalStateException e) {
+                        System.out.println(e.getMessage());
+                    }
+                    break;
+
+                case 5:
+                    try {
+                        if (!cola.estaVacia()) {
+                            System.out.println("Elemento al final: "
+                                    + cola.ultimo());
+                        } else {
+                            System.out.println("La cola está vacía.");
+                        }
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                    break;
+
+                case 6:
+                    if (cola.estaVacia()) {
+                        System.out.println("La cola está vacía.");
+                    } else {
+                        System.out.println("La cola NO está vacía.");
+                    }
+                    break;
+
+                case 7:
+                    System.out.println("Capacidad actual: " + cola.capacidad());
+                    break;
+
+                case 8:
+                    System.out.println("Tamaño actual: " + cola.tamaño());
+                    break;
+
+                case 9:
+                    cola.vaciar();
+                    System.out.println("La cola fue vaciada.");
+                    break;
+
+                case 0:
+                    System.out.println("Saliendo del programa...");
+                    break;
+
+                default:
+                    System.out.println("Opción inválida.");
+            }
+
+        } while (opcion != 0);
+
+        sc.close();
+    }
+
+}
